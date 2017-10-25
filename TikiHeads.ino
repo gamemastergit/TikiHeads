@@ -1,16 +1,6 @@
 #include <EEPROM.h>
 
 
-
-/*
-
-   All the resources for this project: http://randomnerdtutorials.com/
-   Modified by Rui Santos
-
-   Created by FILIPEFLOP
-
-*/
-
 #include <SPI.h>
 #include <MFRC522.h>
 
@@ -48,7 +38,9 @@ void loop()
   digitalWrite(2, HIGH);
   delay(1000);
   digitalWrite(2, LOW);
-    
+  while(digitalRead(A1) == HIGH  || digitalRead(A2) == HIGH || digitalRead(A3) == HIGH || digitalRead(A4) || HIGH && digitalRead(A5) == HIGH){
+      digitalWrite(2, LOW);
+  }
   }
   // Look for new cards
   if ( ! mfrc522.PICC_IsNewCardPresent())
