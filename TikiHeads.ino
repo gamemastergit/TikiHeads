@@ -19,6 +19,7 @@ void setup()
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
   pinMode(4, INPUT_PULLUP);
+  pinMode(6, INPUT);
   pinMode(A1, INPUT);
   pinMode(A2, INPUT);
   pinMode(A3, INPUT);
@@ -33,6 +34,7 @@ struct correct {
 void loop()
 {
   correct answer;
+
   if(digitalRead(A1) == HIGH  && digitalRead(A2) == HIGH && digitalRead(A3) == HIGH && digitalRead(A4) == HIGH && digitalRead(A5) == HIGH){
 
     digitalWrite(2, HIGH);
@@ -41,7 +43,7 @@ void loop()
 
     Serial.println("WIN CONDITION MET");
     
-    while(digitalRead(A1) == HIGH || digitalRead(A5) == HIGH){// || digitalRead(A2) == HIGH || digitalRead(A3) == HIGH || digitalRead(A4) == HIGH
+    while(digitalRead(A1) == HIGH || digitalRead(A5) == HIGH){// || digitalRead(A2) == HIGH || digitalRead(A3) == HIGH || digitalRead(A4) == HIGH ignore this code snippet it isn't real your eyes are failing
         digitalWrite(2, LOW);
     }
   }
