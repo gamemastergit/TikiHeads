@@ -19,7 +19,7 @@ void setup()
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
   pinMode(4, INPUT_PULLUP);
-    pinMode(A1, INPUT);
+  pinMode(A1, INPUT);
   pinMode(A2, INPUT);
   pinMode(A3, INPUT);
   pinMode(A4, INPUT);
@@ -35,12 +35,15 @@ void loop()
   correct answer;
   if(digitalRead(A1) == HIGH  && digitalRead(A2) == HIGH && digitalRead(A3) == HIGH && digitalRead(A4) == HIGH && digitalRead(A5) == HIGH){
 
-  digitalWrite(2, HIGH);
-  delay(1000);
-  digitalWrite(2, LOW);
-  while(digitalRead(A1) == HIGH  || digitalRead(A2) == HIGH || digitalRead(A3) == HIGH || digitalRead(A4) || HIGH && digitalRead(A5) == HIGH){
-      digitalWrite(2, LOW);
-  }
+    digitalWrite(2, HIGH);
+    delay(1000);
+    digitalWrite(2, LOW);
+
+    Serial.println("WIN CONDITION MET");
+    
+    while(digitalRead(A1) == HIGH || digitalRead(A5) == HIGH){// || digitalRead(A2) == HIGH || digitalRead(A3) == HIGH || digitalRead(A4) == HIGH
+        digitalWrite(2, LOW);
+    }
   }
   // Look for new cards
   if ( ! mfrc522.PICC_IsNewCardPresent())
@@ -65,7 +68,7 @@ void loop()
     content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
     content.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
-   if (digitalRead(4) ) {
+  if (!digitalRead(4)) {
     Serial.println("PROGRAMMING MODE ACTIVATED");
     correct temp;
     content.trim();
@@ -77,7 +80,7 @@ void loop()
     return;
   }
 
- EEPROM.get(0, answer);
+  EEPROM.get(0, answer);
 
   Serial.println();
   Serial.print("Message : ");
